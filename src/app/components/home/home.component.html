@@ -1,11 +1,9 @@
 <h1>Welcome to Angular blog</h1>
 <a routerLink="/">Home</a><br>
 <div *ngIf="isLoggedIn">
-    <a routerLink="/logout">Logout</a><br>
-    <a routerLink="/dashboard">dashboard</a>
+    <a routerLink="/logout">Logout</a>
 </div>
 <div *ngIf="!isLoggedIn">
     <a routerLink="/login">Login</a><br>
     <a routerLink="/signup">Sign Up</a><br>
 </div>
-<router-outlet></router-outlet>

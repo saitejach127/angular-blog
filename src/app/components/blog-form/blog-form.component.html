@@ -1,0 +1,9 @@
+<div>
+    <form (submit)="handleSubmit($event, title.value, desc.value)">
+        <label>Title: </label><br>
+        <input type="text" id="title" #title /><br>
+        <label>Description: </label><br>
+        <textarea id="description" #desc></textarea><br>
+        <input type="submit" />
+    </form>
+</div>

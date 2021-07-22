@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'blog-web';
+  isLoggedIn: boolean = false;
+
+  constructor() { }
+
+  ngOnInit(): void {
+    if(localStorage.getItem("logged") == "true"){
+      this.changeStatus(true);
+    }
+  }
+
+  changeStatus(status : boolean) : void {
+    this.isLoggedIn = status;
+  }
+
 }

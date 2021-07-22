@@ -1,0 +1,13 @@
+<h3>Login Here</h3>
+
+<div>
+    <form (submit)="handleSubmit($event,username.value, password.value)">
+        <label>Username: </label><br>
+        <input #username id="username" placeholder="username" /><br>
+        <label>Password: </label><br>
+        <input #password type="password" id="password" placeholder="password" /><br>
+        <input type="submit" />
+    </form>
+    <a routerLink="/signup" >Signup</a>
+    <button (click)="back()">back</button>
+</div>
