@@ -10,7 +10,9 @@ import { DataService } from 'src/app/services/data.service';
 export class BlogFormComponent implements OnInit {
 
   handleSubmit(e: any, title: string, desc: string): void {
-    this.dataService.addBlog(title, desc);
+    this.dataService.addBlog(title, desc).subscribe((success) => {
+      console.log(success);
+    });
     this.route.navigate(["/dashboard"]);
   }
 

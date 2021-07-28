@@ -18,7 +18,10 @@ export class DashboardComponent implements OnInit {
   constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.blogs.subscribe((blg) => this.blogs = blg);
+    this.dataService.getBlogs().subscribe((newBlogs) => {
+      console.log(newBlogs);
+      this.blogs = newBlogs;
+    })
   }
 
 }

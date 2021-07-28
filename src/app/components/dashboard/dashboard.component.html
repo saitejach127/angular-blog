@@ -1,6 +1,6 @@
 <div *ngIf="blogs.length">
     <ol>
-        <li *ngFor="let blog of blogs"><a routerLink="/blog/{{blog.id}}">{{blog.title}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <button (click)="remove(blog.id)">remove</button></li>
+        <li *ngFor="let blog of blogs"><a routerLink="/blog/{{blog.id == undefined ? 1 : blog.id}}">{{blog.title}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <button (click)="remove(blog.id == undefined ? 0 : blog.id)">remove</button></li>
     </ol>
-    <a routerLink="/create">Create Blog</a>
 </div>
+<a routerLink="/create">Create Blog</a>

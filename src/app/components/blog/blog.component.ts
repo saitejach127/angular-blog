@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class BlogComponent implements OnInit {
 
-  blog?: BLOG;
+  blog?: any;
 
   back(): void {
     this.location.back();
@@ -20,7 +20,10 @@ export class BlogComponent implements OnInit {
   constructor(private route: ActivatedRoute, private location: Location, private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.blog = this.dataService.getBlog(Number(this.route.snapshot.paramMap.get("id")))
+    this.dataService.getBlog(Number(this.route.snapshot.paramMap.get("id"))).subscribe((newBlog) => {
+      console.log(newBlog);
+      this.blog = newBlog;
+    })
   }
 
 }

@@ -1,6 +1,6 @@
 export interface BLOG {
-    id: number,
+    id?: number,
     title: string,
     description: string,
-    createdOn?: string
+    createdOn: string
 }

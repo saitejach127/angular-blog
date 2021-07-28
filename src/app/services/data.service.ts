@@ -1,34 +1,47 @@
 import { Injectable } from '@angular/core';
 import { BLOG } from '../defs';
-import { Data } from '../data';
-import { Observable, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { catchError, retry } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  blogs: Observable<BLOG[]> = of(Data) ;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
 
-  constructor() {
+  constructor(private http:HttpClient) {
 
    }
 
-  getBlogs(): Observable<BLOG[]> {
-    this.blogs = of(Data);
-    return this.blogs;
+  getBlogs() : Observable<BLOG[]> {
+    return this.http.get<BLOG[]>("http://localhost:8080/blog-rest/webapi/blogs/all");
   }
 
-  getBlog(id: number) : BLOG {
-    return Data[Data.findIndex((b) => b.id === id)];
+   getBlog(id: number): Observable<BLOG> {
+    return this.http.get<BLOG>(`http://localhost:8080/blog-rest/webapi/blogs?id=${id}`);
   }
 
-  addBlog(title: string, description: string): void {
-    this.blogs = of([...Data, {id:3, title:title, description:description}]);
+  addBlog(title: string, description: string){
+    console.log(title, description);
+    var newBlog : BLOG = {
+      title,
+      description,
+      createdOn : "22-022-022"
+    }
+    const body = (newBlog);
+    return this.http.post("http://localhost:8080/blog-rest/webapi/blogs", body, this.httpOptions);
   }
 
   removeBlog(id: number): void {
-    this.blogs = of(Data.filter((item) => item.id !== id));
+    
   }
 
 }
